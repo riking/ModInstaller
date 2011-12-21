@@ -1,0 +1,10 @@
+Package manager for Minecraft mods.
+
+To-do:
+- Create main menu GUI
+- Create package API
+- Register custom URL header ( as in apt:openjdk-7-jdk )
+- and others. see Issues.
+
+Note:
+Contribuitors, please use "git branch <name>" then "git checkout <name>" when working. This is so that testing code doesn't mess up something else, etc, etc.
