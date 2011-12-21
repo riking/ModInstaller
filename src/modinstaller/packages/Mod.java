@@ -25,9 +25,7 @@ public class Mod {
     
     public ArrayList<String> categories;
     
-    protected File downloadURL;
-    protected boolean cached = false;
-    protected File cacheFile;
+    protected File downloadURL; //for cached files, this will be a local filename.
     public HashMap<String, Mod> dependencies;
     
     private boolean building;
@@ -39,12 +37,19 @@ public class Mod {
         building = true;
     }
     public void complete() { building = false; }
+    void setFileInfo(boolean cache, File loc)
+    {
+        if(cache || downloadURL == null)
+        {
+            downloadURL = loc;
+        }
+    }
     public String getFullyQualifiedName()
     {
         return mcVersion +'.'+ subsection +'.'+ name;
     }
     public File getDownloadPath()
     {
-        return cached ? cacheFile : downloadURL;
+        return downloadURL;
     }
 }
