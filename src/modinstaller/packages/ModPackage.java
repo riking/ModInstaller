@@ -6,21 +6,35 @@ package modinstaller.packages;
 
 import java.util.HashMap;
 import java.io.File;
+import java.util.ArrayList;
 /**
  *
  * @author kane
  */
 public class ModPackage {
     
-    public HashMap<String, ModPackage> dependencies;
-    public String version;
-    public String category1;
+
+    public String mcVersion;
+    public String subsection;
     public String name;
-    public File downloadURL;
+    public int internalVersion;
     
+    public String prettyName;
+    public String shortDesc;
+    public String longDesc;
+    
+    public ArrayList<String> categories;
+    protected File downloadURL;
+    protected boolean cached = false;
+    protected File cacheFile;
+    public HashMap<String, ModPackage> dependencies;
     
     public String getFullyQualifiedName()
     {
-        return version +'.'+ category1 +'.'+ name;
+        return mcVersion +'.'+ subsection +'.'+ name;
+    }
+    public File getDownloadPath()
+    {
+        return cached ? cacheFile : downloadURL;
     }
 }
