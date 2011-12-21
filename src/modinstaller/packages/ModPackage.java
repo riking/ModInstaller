@@ -24,6 +24,7 @@ public class ModPackage {
     public String longDesc;
     
     public ArrayList<String> categories;
+    
     protected File downloadURL;
     protected boolean cached = false;
     protected File cacheFile;
