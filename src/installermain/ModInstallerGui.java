@@ -34,10 +34,10 @@ public class ModInstallerGui extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        favButtonA = new javax.swing.JButton();
+        favButtonB = new javax.swing.JButton();
+        favButtonC = new javax.swing.JButton();
+        favButtonD = new javax.swing.JButton();
 
         jButton4.setText("jButton4");
 
@@ -47,13 +47,13 @@ public class ModInstallerGui extends javax.swing.JFrame {
 
         jLabel2.setText("Favorites");
 
-        jButton1.setText("jButton1");
+        favButtonA.setText("favButtonA");
 
-        jButton2.setText("jButton2");
+        favButtonB.setText("favButtonB");
 
-        jButton3.setText("jButton3");
+        favButtonC.setText("favButtonC");
 
-        jButton5.setText("jButton5");
+        favButtonD.setText("favButtonD");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -68,13 +68,13 @@ public class ModInstallerGui extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(favButtonA, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)))
+                        .addComponent(favButtonB, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(favButtonC, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(favButtonD)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -85,10 +85,10 @@ public class ModInstallerGui extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5))
+                    .addComponent(favButtonA)
+                    .addComponent(favButtonB)
+                    .addComponent(favButtonC)
+                    .addComponent(favButtonD))
                 .addContainerGap(245, Short.MAX_VALUE))
         );
 
@@ -144,11 +144,11 @@ public class ModInstallerGui extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton favButtonA;
+    private javax.swing.JButton favButtonB;
+    private javax.swing.JButton favButtonC;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton favButtonD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
