@@ -11,9 +11,8 @@ import java.util.ArrayList;
  *
  * @author kane
  */
-public class Mod {
-    
-
+public class Mod
+{   
     public String mcVersion;
     public String subsection;
     public String name;
@@ -40,11 +39,20 @@ public class Mod {
         building = true;
     }
     public void complete() { building = false; }
+    
+    public boolean equals(Mod other)
+    {
+        return (name.equals(other.name)
+                && mcVersion.equals(other.name)
+                && (modVersion.equals(other.modVersion) || other.modVersion == null));
+    }
+    
     void setFileInfo(File url, boolean special)
     {
         downloadURL = url;
         downloadSpecial = special;
     }
+    
     public String getFullyQualifiedName()
     {
         return mcVersion +'.'+ subsection +'.'+ name;

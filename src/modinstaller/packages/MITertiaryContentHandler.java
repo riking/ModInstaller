@@ -105,6 +105,7 @@ public class MITertiaryContentHandler implements ContentHandler
     {
         if(qname.equalsIgnoreCase("mod"))
         {
+            working.complete();
             modArray.add(working);
             working = null;
         }
