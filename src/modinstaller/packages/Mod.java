@@ -23,12 +23,11 @@ public class Mod {
     public String shortDesc;
     public String longDesc;
     public String author;
-    
-    public boolean downloaded;
 
     public String forumURL;
     protected File downloadURL; //for cached files, this will be a local filename.
-    
+    public boolean downloadSpecial; //mediafire etc etc 
+            
     public ArrayList<String> categories;
     public HashMap<String, Mod> dependencies;
     
@@ -41,9 +40,10 @@ public class Mod {
         building = true;
     }
     public void complete() { building = false; }
-    void setFileInfo(File url)
+    void setFileInfo(File url, boolean special)
     {
         downloadURL = url;
+        downloadSpecial = special;
     }
     public String getFullyQualifiedName()
     {

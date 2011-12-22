@@ -31,7 +31,7 @@ public class MITertiaryContentHandler implements ContentHandler
      * 5: comma separated values
      */
     private String temp;
-    private boolean tempBool;
+    private boolean tempbool;
     private String toSet;
     
     public MITertiaryContentHandler(String origin, String mcVersion, String subsection)
@@ -89,7 +89,7 @@ public class MITertiaryContentHandler implements ContentHandler
                 if(atts.getLength() != 0)
                 {
                     if("special".equals(atts.getLocalName(0)))
-                        tempBool = Boolean.parseBoolean(atts.getValue(0));
+                        tempbool = Boolean.parseBoolean(atts.getValue(0));
                 }
             }
             else if(qname.endsWith("forum")) { charAction = 3; toSet="forum";}
@@ -115,8 +115,11 @@ public class MITertiaryContentHandler implements ContentHandler
             else if("author".equals(toSet)) working.author = temp;
             else if("version".equals(toSet)) working.modVersion = temp;
             else if("description".equals(toSet)) working.longDesc = temp;
-            else if("download".equals(toSet)) working.setFileInfo(new java.io.File(temp));
+            else if("download".equals(toSet)) working.setFileInfo(new java.io.File(temp), tempbool);
         }
+        temp="";
+        tempbool = false;
+        toSet = "";
     }
     @Override
     public void characters(char[] ch, int start, int length) 
