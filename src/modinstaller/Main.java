@@ -18,7 +18,7 @@ public class Main {
         //if GUI launch
         if(args.length == 0)
         {
-            modinstaller.gui.ModInstallerGui.main(args);
+            modinstaller.gui.MainMenuGui.main(args);
         }
         else
         {
