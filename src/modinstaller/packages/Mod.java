@@ -17,15 +17,19 @@ public class Mod {
     public String mcVersion;
     public String subsection;
     public String name;
-    public int internalVersion;
+    public String modVersion;
     
     public String prettyName;
     public String shortDesc;
     public String longDesc;
+    public String author;
+    
+    public boolean downloaded;
+
+    public String forumURL;
+    protected File downloadURL; //for cached files, this will be a local filename.
     
     public ArrayList<String> categories;
-    
-    protected File downloadURL; //for cached files, this will be a local filename.
     public HashMap<String, Mod> dependencies;
     
     private boolean building;
@@ -37,12 +41,9 @@ public class Mod {
         building = true;
     }
     public void complete() { building = false; }
-    void setFileInfo(boolean cache, File loc)
+    void setFileInfo(File url)
     {
-        if(cache || downloadURL == null)
-        {
-            downloadURL = loc;
-        }
+        downloadURL = url;
     }
     public String getFullyQualifiedName()
     {
