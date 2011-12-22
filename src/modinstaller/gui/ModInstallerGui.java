@@ -187,16 +187,19 @@ public class ModInstallerGui extends javax.swing.JFrame {
             Jarfile cur2, cur3;
             javax.swing.JButton newButton1 = new javax.swing.JButton();
             newButton1.setText("<html><center>"+cur1.nick+"<br/>"+cur1.niceVersion()+"</center></html>");
+            newButton1.setBackground(cur1.getButtonColor());
             if(iter.hasNext())
             {
                 cur2 = iter.next();
                 javax.swing.JButton newButton2 = new javax.swing.JButton();
                 newButton2.setText("<html><center>"+cur2.nick+"<br/>"+cur2.niceVersion()+"</center></html>");
+                newButton2.setBackground(cur2.getButtonColor());
                 if(iter.hasNext())
                 {
                     cur3 = iter.next();
                     javax.swing.JButton newButton3 = new javax.swing.JButton();
                     newButton3.setText("<html><center>"+cur3.nick+"<br/>"+cur3.niceVersion()+"</center></html>");
+                    newButton3.setBackground(cur3.getButtonColor());
             
                     layout.setHorizontalGroup(
                          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
