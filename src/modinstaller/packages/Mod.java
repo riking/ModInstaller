@@ -30,6 +30,8 @@ public class Mod
     public ArrayList<String> categories;
     public ArrayList<Mod> dependencies;
     
+    public static HashMap<String,Mod> lookup;
+    
     private boolean building;
     public Mod(String s1,String s2, String s3)
     {
@@ -38,7 +40,15 @@ public class Mod
         name = s3;
         building = true;
     }
-    public void complete() { building = false; }
+    public void complete()
+            throws ModAlreadyDefinedException
+    {
+        building = false;
+        if(!lookup.containsKey(getFullyQualifiedName()))
+            lookup.put(getFullyQualifiedName(), this);
+        else
+            throw new ModAlreadyDefinedException(getFullyQualifiedName());
+    }
     
     public boolean equals(Mod other)
     {
@@ -53,7 +63,7 @@ public class Mod
     
     public String getFullyQualifiedName()
     {
-        return mcVersion +'.'+ subsection +'.'+ name+" mod v"+modVersion;
+        return mcVersion+'-'+subsection+'-'+name;
     }
     public File getDownloadPath()
     {
