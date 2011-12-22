@@ -23,16 +23,12 @@ public class MITertiaryContentHandler implements ContentHandler
     
     private byte charAction;
     /**
-     * 0: ignore
-     * 1: is a string
-     * 2: is a boolean
-     * 3: is a URL
-     * 4: DO NOT USE
-     * 5: comma separated values
+     * not really used. discarded idea.
      */
     private String temp;
     private boolean tempbool;
     private String toSet;
+   
     
     public MITertiaryContentHandler(String origin, String mcVersion, String subsection)
     {
@@ -40,6 +36,13 @@ public class MITertiaryContentHandler implements ContentHandler
         this.mcVersion = mcVersion;
         this.subsection = subsection;
     }
+    
+    public ArrayList<Mod> getMods()
+    {
+        if(!finished) throw new RuntimeException("Tried to get mod list before parsing complete");
+        return modArray;
+    }
+    
     @Override
     public void startDocument()
     {
@@ -50,11 +53,7 @@ public class MITertiaryContentHandler implements ContentHandler
     {
         finished=true;
     }
-    public ArrayList<Mod> getMods()
-    {
-        if(!finished) throw new RuntimeException("Tried to get mod list before parsing complete");
-        return modArray;
-    }
+
     @Override
     public void skippedEntity(String name)
     {

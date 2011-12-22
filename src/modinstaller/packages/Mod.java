@@ -28,7 +28,7 @@ public class Mod
     public boolean downloadSpecial; //mediafire etc etc 
             
     public ArrayList<String> categories;
-    public HashMap<String, Mod> dependencies;
+    public ArrayList<Mod> dependencies;
     
     private boolean building;
     public Mod(String s1,String s2, String s3)
@@ -42,9 +42,7 @@ public class Mod
     
     public boolean equals(Mod other)
     {
-        return (name.equals(other.name)
-                && mcVersion.equals(other.name)
-                && (modVersion.equals(other.modVersion) || other.modVersion == null));
+        return (this.getFullyQualifiedName().equals(other.getFullyQualifiedName()));
     }
     
     void setFileInfo(File url, boolean special)
@@ -55,7 +53,7 @@ public class Mod
     
     public String getFullyQualifiedName()
     {
-        return mcVersion +'.'+ subsection +'.'+ name;
+        return mcVersion +'.'+ subsection +'.'+ name+" mod v"+modVersion;
     }
     public File getDownloadPath()
     {
