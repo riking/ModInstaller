@@ -124,7 +124,7 @@ public class MITertiaryContentHandler implements ContentHandler
     @Override
     public void characters(char[] ch, int start, int length) 
     {
-    
+        temp = temp.concat(new String(ch,start,length));
     }
     
     @Override

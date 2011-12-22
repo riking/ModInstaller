@@ -8,7 +8,10 @@
  *
  * Created on Dec 20, 2011, 10:45:20 PM
  */
-package installermain;
+package modinstaller.gui;
+import modinstaller.packages.Jarfile;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  *
@@ -39,6 +42,10 @@ public class ModInstallerGui extends javax.swing.JFrame {
         favButtonC = new javax.swing.JButton();
         favButtonD = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jarPanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         jButton4.setText("jButton4");
 
@@ -59,6 +66,51 @@ public class ModInstallerGui extends javax.swing.JFrame {
 
         favButtonD.setText("favButtonD");
         favButtonD.setPreferredSize(new java.awt.Dimension(70, 60));
+
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        jarPanel.setBackground(new java.awt.Color(248, 247, 246));
+
+        jButton1.setLabel("<html><center>server<br/>Minecraft 1.0</center></html>");
+        jButton1.setPreferredSize(new java.awt.Dimension(118, 50));
+
+        jButton2.setLabel("<html><center>server<br/>Minecraft 1.0</center></html>");
+        jButton2.setPreferredSize(new java.awt.Dimension(118, 50));
+
+        jButton3.setLabel("<html><center>server<br/>Minecraft 1.0</center></html>");
+        jButton3.setPreferredSize(new java.awt.Dimension(118, 50));
+
+        javax.swing.GroupLayout jarPanelLayout = new javax.swing.GroupLayout(jarPanel);
+        jarPanel.setLayout(jarPanelLayout);
+        jarPanelLayout.setHorizontalGroup(
+            jarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jarPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(227, 227, 227))
+        );
+
+        jarPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
+
+        jarPanelLayout.setVerticalGroup(
+            jarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jarPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(193, 193, 193))
+        );
+
+        jarPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
+
+        jScrollPane1.setViewportView(jarPanel);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,7 +134,7 @@ public class ModInstallerGui extends javax.swing.JFrame {
                         .addComponent(favButtonD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -100,8 +152,9 @@ public class ModInstallerGui extends javax.swing.JFrame {
                     .addComponent(favButtonB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(favButtonC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(favButtonD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(76, 76, 76)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(209, 209, 209))
         );
 
         favLabel.getAccessibleContext().setAccessibleDescription("");
@@ -110,20 +163,80 @@ public class ModInstallerGui extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void fillModList(List<Jarfile> list,int num)
+    {
+        jButtonArray = new javax.swing.JButton[num];
+        ListIterator<Jarfile> iter= list.listIterator();
+        byte counter = 0;
+        javax.swing.GroupLayout layout = (javax.swing.GroupLayout) jarPanel.getLayout();
+        while(iter.hasNext())
+        {
+            Jarfile cur1 = iter.next();
+            Jarfile cur2, cur3;
+            javax.swing.JButton newButton1 = new javax.swing.JButton();
+            newButton1.setText("<html><center>"+cur1.nick+"<br/>"+cur1.niceVersion()+"</center></html>");
+            if(iter.hasNext())
+            {
+                cur2 = iter.next();
+                javax.swing.JButton newButton2 = new javax.swing.JButton();
+                newButton2.setText("<html><center>"+cur2.nick+"<br/>"+cur2.niceVersion()+"</center></html>");
+                if(iter.hasNext())
+                {
+                    cur3 = iter.next();
+                    javax.swing.JButton newButton3 = new javax.swing.JButton();
+                    newButton3.setText("<html><center>"+cur3.nick+"<br/>"+cur3.niceVersion()+"</center></html>");
+            
+                    layout.setHorizontalGroup(
+                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                         .addGroup(layout.createSequentialGroup()
+                             .addContainerGap()
+                             .addComponent(cur1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                             .addComponent(cur2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                             .addComponent(cur3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                             .addGap(227, 227, 227))
+                    );
+                }
+                else
+                {
+                     layout.setHorizontalGroup(
+                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                         .addGroup(layout.createSequentialGroup()
+                             .addContainerGap()
+                             .addComponent(cur1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                             .addComponent(cur2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                             .addGap(227, 227, 227))
+                    );
+                }
+            }
+            else
+            {
+                 layout.setHorizontalGroup(
+                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addGroup(layout.createSequentialGroup()
+                         .addContainerGap()
+                         .addComponent(cur1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                         .addGap(227, 227, 227))
+                );
+            }
+        }
+    }
+    private javax.swing.JButton[] jButtonArray;
     /**
      * @param args the command line arguments
      */
@@ -165,9 +278,13 @@ public class ModInstallerGui extends javax.swing.JFrame {
     private javax.swing.JButton favButtonC;
     private javax.swing.JButton favButtonD;
     private javax.swing.JLabel favLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jarPanel;
     // End of variables declaration//GEN-END:variables
 }
