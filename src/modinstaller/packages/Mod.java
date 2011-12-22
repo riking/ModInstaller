@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class Mod
 {   
     public String mcVersion;
-    public String subsection;
     public String name;
     public String modVersion;
     
@@ -33,10 +32,9 @@ public class Mod
     public static HashMap<String,Mod> lookup;
     
     private boolean building;
-    public Mod(String s1,String s2, String s3)
+    public Mod(String s1, String s3)
     {
         mcVersion = s1;
-        subsection = s2;
         name = s3;
         building = true;
     }
@@ -44,15 +42,15 @@ public class Mod
             throws ModAlreadyDefinedException
     {
         building = false;
-        if(!lookup.containsKey(getFullyQualifiedName()))
-            lookup.put(getFullyQualifiedName(), this);
+        if(!lookup.containsKey(getLookupName()))
+            lookup.put(getLookupName(), this);
         else
-            throw new ModAlreadyDefinedException(getFullyQualifiedName());
+            throw new ModAlreadyDefinedException(getLookupName());
     }
     
     public boolean equals(Mod other)
     {
-        return (this.getFullyQualifiedName().equals(other.getFullyQualifiedName()));
+        return getLookupName().equals(other.getLookupName());
     }
     
     void setFileInfo(File url, boolean special)
@@ -60,13 +58,20 @@ public class Mod
         downloadURL = url;
         downloadSpecial = special;
     }
-    
-    public String getFullyQualifiedName()
+    public String getLookupName()
     {
-        return mcVersion+'-'+subsection+'-'+name;
+        return mcVersion+'-'+name;
     }
     public File getDownloadPath()
     {
         return downloadURL;
+    }
+    public static Mod get(String qualifiedName)
+    {
+        return lookup.get(qualifiedName);
+    }
+    public static Mod getByNameAndVersion(String name, String version)
+    {
+        return lookup.get(version+'-'+name);
     }
 }

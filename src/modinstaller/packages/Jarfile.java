@@ -6,6 +6,7 @@ package modinstaller.packages;
 import java.util.ArrayList;
 import java.io.File;
 import java.util.Properties;
+import java.awt.Color;
 
 /**
  *
@@ -26,6 +27,13 @@ public class Jarfile {
     {
         return "Minecraft" + version;
     }
+    public Color getButtonColor()
+    {
+        if(version.equals(Manager.currentVersion))
+        {
+            
+        }
+    }
     public Jarfile doSettingsFile()
     {
         try
@@ -36,7 +44,10 @@ public class Jarfile {
             version = configReader.getProperty("mcVersion");
             String installedmods = configReader.getProperty("installedMods");
             String[] temp = installedmods.split(",");
-            
+            for(String name : temp)
+            {
+                
+            }
         }
         catch(java.io.IOException e)
         {
