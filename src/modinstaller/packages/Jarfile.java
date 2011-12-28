@@ -29,7 +29,7 @@ public class Jarfile {
     }
     public Color getButtonColor()
     {
-        if(version.equals(Manager.currentVersion))
+        if(version.equals(modinstaller.PackageManager.currentVersion))
         {
             
         }
