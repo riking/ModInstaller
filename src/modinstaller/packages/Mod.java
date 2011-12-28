@@ -15,7 +15,6 @@ import java.util.List;
 public class Mod
 {   
     public String mcVersion;
-    public String subsection;
     public String name;
     public String modVersion;
     
@@ -31,6 +30,8 @@ public class Mod
     private ArrayList<String> categories;
     public List<Mod> dependencies;
     
+    public static HashMap<String,Mod> lookup;
+    
     private boolean building;
     /**
      * 
@@ -44,7 +45,15 @@ public class Mod
         building = true;
         dependencies = new ArrayList<>();
     }
-    public void complete() { building = false; }
+    public void complete()
+            throws ModAlreadyDefinedException
+    {
+        building = false;
+        if(!lookup.containsKey(getLookupName()))
+            lookup.put(getLookupName(), this);
+        else
+            throw new ModAlreadyDefinedException(getLookupName());
+    }
     
     public void addDependencies(String depends)
     {
@@ -96,5 +105,13 @@ public class Mod
             throws java.net.MalformedURLException
     {
         return new java.net.URL(downloadURL);
+    }
+    public static Mod get(String qualifiedName)
+    {
+        return lookup.get(qualifiedName);
+    }
+    public static Mod getByNameAndVersion(String name, String version)
+    {
+        return lookup.get(version+'-'+name);
     }
 }

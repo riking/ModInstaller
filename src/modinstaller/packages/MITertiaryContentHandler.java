@@ -87,7 +87,16 @@ public class MITertiaryContentHandler implements ContentHandler
     {
         if(qname.equalsIgnoreCase("mod"))
         {
-            working.complete();
+            try
+            {
+                working.complete();
+            }
+            catch(ModAlreadyDefinedException e)
+            {
+                java.util.logging.Logger.getLogger("modPackageReader")
+                    .log(java.util.logging.Level.SEVERE,e.getStackTrace().toString());
+            }
+                
             modArray.add(working);
             working = null;
         }
