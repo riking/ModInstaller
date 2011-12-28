@@ -4,7 +4,7 @@
  */
 
 /*
- * JarSelectMenu.java
+ * MenuMain.java
  *
  * Created on Dec 27, 2011, 10:02:26 PM
  */
@@ -14,10 +14,10 @@ package modinstaller.gui;
  *
  * @author kane
  */
-public class JarSelectMenu extends javax.swing.JPanel {
+public class MenuMain extends javax.swing.JPanel {
 
-    /** Creates new form JarSelectMenu */
-    public JarSelectMenu() {
+    /** Creates new form MenuMain */
+    public MenuMain() {
         initComponents();
     }
 

@@ -4,7 +4,7 @@
  */
 
 /*
- * JarEditingMenu.java
+ * MenuJarEdit.java
  *
  * Created on Dec 27, 2011, 10:03:08 PM
  */
@@ -14,10 +14,10 @@ package modinstaller.gui;
  *
  * @author kane
  */
-public class JarEditingMenu extends javax.swing.JPanel {
+public class MenuJarEdit extends javax.swing.JPanel {
 
-    /** Creates new form JarEditingMenu */
-    public JarEditingMenu() {
+    /** Creates new form MenuJarEdit */
+    public MenuJarEdit() {
         initComponents();
     }
 
