@@ -22,41 +22,74 @@ public class Mod
     public String shortDesc;
     public String longDesc;
     public String author;
-
     public String forumURL;
-    protected File downloadURL; //for cached files, this will be a local filename.
-    public boolean downloadSpecial; //mediafire etc etc 
+    
+    public String downloadURL;    
+    public boolean hasResources;
             
-    public ArrayList<String> categories;
+    private ArrayList<String> categories;
     public ArrayList<Mod> dependencies;
     
     private boolean building;
-    public Mod(String s1,String s2, String s3)
+    /**
+     * 
+     * @param s1 Minecraft version.
+     * @param s3 Internal, unique mod name.
+     */
+    public Mod(String s1, String s3)
     {
         mcVersion = s1;
-        subsection = s2;
         name = s3;
         building = true;
     }
     public void complete() { building = false; }
     
+    public void addDependencies(String depends)
+    {
+        dependencies.add(modinstaller.PackageManager.getInstance().get(depends,mcVersion));
+    }
+    public void addDependencies(String[] depends)
+    {
+        for(String s : depends)
+        {
+            dependencies.add(modinstaller.PackageManager.getInstance().get(s,mcVersion));
+        }
+    }
+    public void addDependencies(java.util.Collection<Mod> depends)
+    {
+        dependencies.addAll(depends);
+    }
+    
+    
     public boolean equals(Mod other)
     {
-        return (this.getFullyQualifiedName().equals(other.getFullyQualifiedName()));
+        return (this.getIndexingName().equals(other.getIndexingName()));
     }
     
-    void setFileInfo(File url, boolean special)
+    /**
+     * Gets the name of the mod used in lookups.
+     * @return Lookup-able name.
+     */
+    public String getIndexingName()
     {
-        downloadURL = url;
-        downloadSpecial = special;
+        return mcVersion +'-'+ name;
     }
-    
-    public String getFullyQualifiedName()
+    public static String getIndexingName(String name, String mcVersion)
     {
-        return mcVersion +'.'+ subsection +'.'+ name+" mod v"+modVersion;
+        return mcVersion +'-'+ name;
     }
-    public File getDownloadPath()
+    /**
+     * Gets the name of the mod used for writing jarfile descriptors.
+     * Includes mod version so that updates can be performed.
+     * @return 
+     */
+    public String getJarfileName()
     {
-        return downloadURL;
+        return mcVersion +'-'+name+'-'+modVersion;
+    }
+    public java.net.URL getDownloadPath()
+            throws java.net.MalformedURLException
+    {
+        return new java.net.URL(downloadURL);
     }
 }

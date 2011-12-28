@@ -21,20 +21,15 @@ public class MITertiaryContentHandler implements ContentHandler
     private String mcVersion;
     private String subsection;
     
-    private byte charAction;
-    /**
-     * not really used. discarded idea.
-     */
-    private String temp;
-    private boolean tempbool;
+    private byte charAction; //5 means include whitespace. 1 means normal.
+    private String workingString;
     private String toSet;
    
     
-    public MITertiaryContentHandler(String origin, String mcVersion, String subsection)
+    public MITertiaryContentHandler(String origin, String mcVersion)
     {
         this.origin = origin;
         this.mcVersion = mcVersion;
-        this.subsection = subsection;
     }
     
     public ArrayList<Mod> getMods()
@@ -46,7 +41,7 @@ public class MITertiaryContentHandler implements ContentHandler
     @Override
     public void startDocument()
     {
-        modArray = new ArrayList<Mod>(10);
+        modArray = new ArrayList<>(10);
     }
     @Override
     public void endDocument()
@@ -71,32 +66,20 @@ public class MITertiaryContentHandler implements ContentHandler
     {
         if(qname.equalsIgnoreCase("mod"))
         {
-            working = new Mod(mcVersion, subsection, atts.getValue("id"));
+            working = new Mod(mcVersion, atts.getValue("id"));
         }
         else if(qname.startsWith("mod."))
         {
-                 if(qname.endsWith("name")) { charAction = 1; toSet="name";}
-            else if(qname.endsWith("shortdesc")) { charAction = 1; toSet="shortdesc";}
-            else if(qname.endsWith("author")) { charAction = 1; toSet="author";}
-            else if(qname.endsWith("version")) { charAction = 1; toSet="version";}
-            
-            else if(qname.endsWith("cache")) { charAction = 2; toSet="cache";}
-            
-            else if(qname.endsWith("download")) {
-                charAction = 3;
-                toSet="download";
-                if(atts.getLength() != 0)
-                {
-                    if("special".equals(atts.getLocalName(0)))
-                        tempbool = Boolean.parseBoolean(atts.getValue(0));
-                }
-            }
-            else if(qname.endsWith("forum")) { charAction = 3; toSet="forum";}
-            
-            else if(qname.endsWith("description")) { charAction = 1; toSet = "description";}
-            
-            else if(qname.endsWith("dependencies")) { charAction = 5; toSet = "dependencies";}
-            else if(qname.endsWith("categories")) { charAction = 5; toSet = "categories";}
+             charAction = 1;
+                 if(qname.endsWith("name")) {toSet="name";}
+            else if(qname.endsWith("shortdesc")) {toSet="shortdesc";}
+            else if(qname.endsWith("author")) {toSet="author";}
+            else if(qname.endsWith("version")) {toSet="version";}
+            else if(qname.endsWith("forum")) {toSet="forum";}
+            else if(qname.endsWith("description")) { charAction = 5; toSet = "description";}
+            else if(qname.endsWith("dependencies")) {toSet = "dependencies";}
+            else if(qname.endsWith("categories")) {toSet = "categories";}
+            else if(qname.endsWith("download")) {toSet = "download";}
         }
     }
     @Override
@@ -110,21 +93,37 @@ public class MITertiaryContentHandler implements ContentHandler
         }
         else if(qname.startsWith("mod"))
         {
-            if("name".equals(toSet)) working.prettyName = temp;
-            else if("shortdesc".equals(toSet)) working.shortDesc = temp;
-            else if("author".equals(toSet)) working.author = temp;
-            else if("version".equals(toSet)) working.modVersion = temp;
-            else if("description".equals(toSet)) working.longDesc = temp;
-            else if("download".equals(toSet)) working.setFileInfo(new java.io.File(temp), tempbool);
+            switch(toSet)
+            {
+                case "name":
+                    working.prettyName = workingString; break;
+                case "shortdesc":
+                    working.shortDesc = workingString; break;
+                case "author":
+                    working.author = workingString; break;
+                case "version":
+                    working.modVersion = workingString; break;
+                case "forum":
+                    working.forumURL = workingString; break;
+                case "description":
+                    working.longDesc = workingString; break;
+                case "dependencies":
+                    working.addDependencies(workingString.split(",")); break;
+                case "categories":
+                    working.addDependencies(workingString.split(",")); break;
+                case "download":
+                    working.downloadURL = workingString; break;
+                default:
+                    throw new RuntimeException("Programmer failure");
+            }
         }
-        temp="";
-        tempbool = false;
+        this.workingString = "";
         toSet = "";
     }
     @Override
     public void characters(char[] ch, int start, int length) 
     {
-    
+        workingString = workingString.concat(new String(ch,start,length));
     }
     
     @Override
@@ -132,7 +131,7 @@ public class MITertiaryContentHandler implements ContentHandler
     {
         if(charAction == 4)
         {
-            temp = temp.concat(new String(ch,start,length));
+            workingString = workingString.concat(new String(ch,start,length));
         }
     }
     
