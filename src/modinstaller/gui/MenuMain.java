@@ -32,22 +32,22 @@ public class MenuMain extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jarlistpanel = new JarListPanel();
+        jarListPanel1 = new modinstaller.gui.JarListPanel();
 
         jLabel1.setText("Main Menu");
 
-        javax.swing.GroupLayout jarlistpanelLayout = new javax.swing.GroupLayout(jarlistpanel);
-        jarlistpanel.setLayout(jarlistpanelLayout);
-        jarlistpanelLayout.setHorizontalGroup(
-            jarlistpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jarListPanel1Layout = new javax.swing.GroupLayout(jarListPanel1);
+        jarListPanel1.setLayout(jarListPanel1Layout);
+        jarListPanel1Layout.setHorizontalGroup(
+            jarListPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 374, Short.MAX_VALUE)
         );
-        jarlistpanelLayout.setVerticalGroup(
-            jarlistpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jarListPanel1Layout.setVerticalGroup(
+            jarListPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 210, Short.MAX_VALUE)
         );
 
-        jScrollPane1.setViewportView(jarlistpanel);
+        jScrollPane1.setViewportView(jarListPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -68,7 +68,7 @@ public class MenuMain extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -76,6 +76,6 @@ public class MenuMain extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel jarlistpanel;
+    private modinstaller.gui.JarListPanel jarListPanel1;
     // End of variables declaration//GEN-END:variables
 }
