@@ -7,6 +7,7 @@ package modinstaller.packages;
 import java.util.HashMap;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author kane
@@ -28,7 +29,7 @@ public class Mod
     public boolean hasResources;
             
     private ArrayList<String> categories;
-    public ArrayList<Mod> dependencies;
+    public List<Mod> dependencies;
     
     private boolean building;
     /**
@@ -41,6 +42,7 @@ public class Mod
         mcVersion = s1;
         name = s3;
         building = true;
+        dependencies = new ArrayList<>();
     }
     public void complete() { building = false; }
     
@@ -65,7 +67,10 @@ public class Mod
     {
         return (this.getIndexingName().equals(other.getIndexingName()));
     }
-    
+    public boolean equalsNeedsUpdate(Mod other)
+    {
+        return (this.getJarfileName().equals(other.getJarfileName()));
+    }
     /**
      * Gets the name of the mod used in lookups.
      * @return Lookup-able name.
