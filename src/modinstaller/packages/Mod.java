@@ -3,9 +3,9 @@
  * and open the template in the editor.
  */
 package modinstaller.packages;
+import modinstaller.PackageManager;
+import modinstaller.Version;
 
-import java.util.HashMap;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Mod
 {   
-    public String mcVersion;
+    public Version mcVersion;
     public String name;
     public String modVersion;
     
@@ -30,18 +30,23 @@ public class Mod
     private ArrayList<String> categories;
     public List<Mod> dependencies;
     
-    public static HashMap<String,Mod> lookup;
-    
     private boolean building;
     /**
      * 
      * @param s1 Minecraft version.
      * @param s3 Internal, unique mod name.
      */
-    public Mod(String s1, String s3)
+    public Mod(String version, String id)
     {
-        mcVersion = s1;
-        name = s3;
+        mcVersion = Version.valueOf(version);
+        name = id;
+        building = true;
+        dependencies = new ArrayList<>();
+    }
+    public Mod(Version version, String id)
+    {
+        mcVersion = version;
+        name = id;
         building = true;
         dependencies = new ArrayList<>();
     }
@@ -49,21 +54,18 @@ public class Mod
             throws ModAlreadyDefinedException
     {
         building = false;
-        if(!lookup.containsKey(getLookupName()))
-            lookup.put(getLookupName(), this);
-        else
-            throw new ModAlreadyDefinedException(getLookupName());
+        PackageManager.addMod(this);
     }
     
     public void addDependencies(String depends)
     {
-        dependencies.add(modinstaller.PackageManager.getInstance().get(depends,mcVersion));
+        dependencies.add(PackageManager.getMod(depends,mcVersion));
     }
     public void addDependencies(String[] depends)
     {
         for(String s : depends)
         {
-            dependencies.add(modinstaller.PackageManager.getInstance().get(s,mcVersion));
+            dependencies.add(PackageManager.getMod(s,mcVersion));
         }
     }
     public void addDependencies(java.util.Collection<Mod> depends)
@@ -86,7 +88,11 @@ public class Mod
      */
     public String getIndexingName()
     {
-        return mcVersion +'-'+ name;
+        return mcVersion.name() +'-'+ name;
+    }
+    public static String getIndexingName(String name, Version mcVersion)
+    {
+        return mcVersion.name() +'-'+ name;
     }
     public static String getIndexingName(String name, String mcVersion)
     {
@@ -99,19 +105,11 @@ public class Mod
      */
     public String getJarfileName()
     {
-        return mcVersion +'-'+name+'-'+modVersion;
+        return mcVersion.name() +'-'+name+'-'+modVersion;
     }
     public java.net.URL getDownloadPath()
             throws java.net.MalformedURLException
     {
         return new java.net.URL(downloadURL);
-    }
-    public static Mod get(String qualifiedName)
-    {
-        return lookup.get(qualifiedName);
-    }
-    public static Mod getByNameAndVersion(String name, String version)
-    {
-        return lookup.get(version+'-'+name);
     }
 }

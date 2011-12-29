@@ -3,6 +3,8 @@
  * and open the template in the editor.
  */
 package modinstaller.packages;
+import modinstaller.PackageManager;
+import modinstaller.Version;
 import java.util.ArrayList;
 import java.io.File;
 import java.util.Properties;
@@ -14,7 +16,7 @@ import java.awt.Color;
  */
 public class Jarfile {
     public String nick;
-    protected String version;
+    protected Version version;
     public ArrayList<String> installed;
     public File jarlocation;
     private File settingsfile;
@@ -29,9 +31,9 @@ public class Jarfile {
     }
     public Color getButtonColor()
     {
-        if(version.equals(modinstaller.PackageManager.currentVersion))
+        if(version.equals(PackageManager.currentVersion))
         {
-            
+            return SettingsContainer.getColorUpToDate();
         }
     }
     public Jarfile doSettingsFile()

@@ -13,32 +13,25 @@ import java.util.LinkedList;
  * @author kane
  */
 public class PackageManager {
-    private HashMap<String,Mod> allMods;
+    private static HashMap<String,Mod> allMods;
     private static PackageManager instance;
-    
-    private LinkedList<Mod> installQueue;
+    public static Version currentVersion;
     /**
      * Gets a Mod class by name and version.
      * @param name Internal name
-     * @param version Minecraft version.
+     * @param ver Minecraft version.
      * @return 
      */
-    public Mod get(String name, String version)
+    public static Mod getMod(String name, Version ver)
     {
-        return allMods.get(Mod.getIndexingName(name, version));
+        return allMods.get(Mod.getIndexingName(name, ver));
     }
     public static PackageManager getInstance()
     {
         return instance;
     }
-    
-    void markDependencies(Mod m)
+    public static void addMod(Mod m)
     {
-        if(installQueue.contains(m)) return;
-        installQueue.addLast(m);
-        for(Mod another : m.dependencies)
-        {
-            this.markDependencies(another);
-        }
+        allMods.put(m.getIndexingName(), m);
     }
 }
