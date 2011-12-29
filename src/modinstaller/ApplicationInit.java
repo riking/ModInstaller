@@ -12,27 +12,30 @@ public class ApplicationInit
 {
     public static void main(String[] args)
     {
-        int launchmode = 0b00000001;
+        int launchmode = 0b00000000;
         /**
-         * f & 0b00000001: Use GUI
+         * f & 0b00000001: No GUI
          * f & 0b00000010: Quick Launch
          * f & 0b00000100: Command-line Install
          * 
          */
         short i = 0;
         String s;
-        while(i < args.length)
+        if(args.length != 0)
         {
-            s = args[i];
-            if(s.startsWith("-"))
+            if(args[0].equals("launch"))
             {
-                if(s.equals("-l") && (i+1)>args.length)
-                {
-                    launchmode &= ~0b0001; // Just FYI - tilde is bitwise NOT.
-                    launchmode |= 0b0010;
-                    
-                }
+                launchmode |= 0b0011;
+            }
+            else if(args[0].startsWith("URI"))
+            {
+                
             }
         }
+        
+    }
+    
+    private static void initJarfiles()
+    {
     }
 }

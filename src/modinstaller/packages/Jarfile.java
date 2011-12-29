@@ -3,8 +3,7 @@
  * and open the template in the editor.
  */
 package modinstaller.packages;
-import modinstaller.PackageManager;
-import modinstaller.Version;
+import modinstaller.*;
 import java.util.ArrayList;
 import java.io.File;
 import java.util.Properties;
@@ -43,12 +42,12 @@ public class Jarfile {
             Properties configReader = new Properties();
             configReader.load(new java.io.FileInputStream(settingsfile));
             nick = configReader.getProperty("name");
-            version = configReader.getProperty("mcVersion");
+            version = Version.valueOf(configReader.getProperty("mcVersion"));
             String installedmods = configReader.getProperty("installedMods");
             String[] temp = installedmods.split(",");
             for(String name : temp)
             {
-                
+                installed.add(name);
             }
         }
         catch(java.io.IOException e)

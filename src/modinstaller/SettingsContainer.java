@@ -33,14 +33,6 @@ public class SettingsContainer {
     }
     public void init()
     {
-        
-        try
-        {
-            BufferedReader reader = new BufferedReader(new java.io.FileReader(settingsFile));
-        }
-        catch(FileNotFoundException e)
-        {
-            
-        }
+        Properties pReader = new Properties(settingsFile);
     }
 }
