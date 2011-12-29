@@ -16,7 +16,7 @@ public class ModGroup extends Mod
         super(s1,s3);
     }
     @Override
-    public File getDownloadPath()
+    public java.net.URL getDownloadPath()
     {
         return null;
     }

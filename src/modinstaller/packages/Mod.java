@@ -7,6 +7,7 @@ package modinstaller.packages;
 import java.util.HashMap;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author kane
@@ -21,22 +22,28 @@ public class Mod
     public String shortDesc;
     public String longDesc;
     public String author;
-
     public String forumURL;
-    protected File downloadURL; //for cached files, this will be a local filename.
-    public boolean downloadSpecial; //mediafire etc etc 
+    
+    public String downloadURL;    
+    public boolean hasResources;
             
-    public ArrayList<String> categories;
-    public ArrayList<Mod> dependencies;
+    private ArrayList<String> categories;
+    public List<Mod> dependencies;
     
     public static HashMap<String,Mod> lookup;
     
     private boolean building;
+    /**
+     * 
+     * @param s1 Minecraft version.
+     * @param s3 Internal, unique mod name.
+     */
     public Mod(String s1, String s3)
     {
         mcVersion = s1;
         name = s3;
         building = true;
+        dependencies = new ArrayList<>();
     }
     public void complete()
             throws ModAlreadyDefinedException
@@ -48,23 +55,56 @@ public class Mod
             throw new ModAlreadyDefinedException(getLookupName());
     }
     
-    public boolean equals(Mod other)
+    public void addDependencies(String depends)
     {
-        return getLookupName().equals(other.getLookupName());
+        dependencies.add(modinstaller.PackageManager.getInstance().get(depends,mcVersion));
+    }
+    public void addDependencies(String[] depends)
+    {
+        for(String s : depends)
+        {
+            dependencies.add(modinstaller.PackageManager.getInstance().get(s,mcVersion));
+        }
+    }
+    public void addDependencies(java.util.Collection<Mod> depends)
+    {
+        dependencies.addAll(depends);
     }
     
-    void setFileInfo(File url, boolean special)
+    
+    public boolean equals(Mod other)
     {
-        downloadURL = url;
-        downloadSpecial = special;
+        return (this.getIndexingName().equals(other.getIndexingName()));
     }
-    public String getLookupName()
+    public boolean equalsNeedsUpdate(Mod other)
     {
-        return mcVersion+'-'+name;
+        return (this.getJarfileName().equals(other.getJarfileName()));
     }
-    public File getDownloadPath()
+    /**
+     * Gets the name of the mod used in lookups.
+     * @return Lookup-able name.
+     */
+    public String getIndexingName()
     {
-        return downloadURL;
+        return mcVersion +'-'+ name;
+    }
+    public static String getIndexingName(String name, String mcVersion)
+    {
+        return mcVersion +'-'+ name;
+    }
+    /**
+     * Gets the name of the mod used for writing jarfile descriptors.
+     * Includes mod version so that updates can be performed.
+     * @return 
+     */
+    public String getJarfileName()
+    {
+        return mcVersion +'-'+name+'-'+modVersion;
+    }
+    public java.net.URL getDownloadPath()
+            throws java.net.MalformedURLException
+    {
+        return new java.net.URL(downloadURL);
     }
     public static Mod get(String qualifiedName)
     {
