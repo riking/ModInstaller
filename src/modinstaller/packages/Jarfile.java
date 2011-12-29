@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package modinstaller.packages;
+import java.util.Arrays;
 import modinstaller.*;
 import java.util.ArrayList;
 import java.io.File;
@@ -34,6 +35,7 @@ public class Jarfile {
         {
             return SettingsContainer.getColorUpToDate();
         }
+        return new Color(255,255,255);
     }
     public Jarfile doSettingsFile()
     {
@@ -45,10 +47,7 @@ public class Jarfile {
             version = Version.valueOf(configReader.getProperty("mcVersion"));
             String installedmods = configReader.getProperty("installedMods");
             String[] temp = installedmods.split(",");
-            for(String name : temp)
-            {
-                installed.add(name);
-            }
+            installed.addAll(Arrays.asList(temp));
         }
         catch(java.io.IOException e)
         {
