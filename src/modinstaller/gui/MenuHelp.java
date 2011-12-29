@@ -4,9 +4,9 @@
  */
 
 /*
- * SettingsMenu.java
+ * MenuHelp.java
  *
- * Created on Dec 27, 2011, 10:02:59 PM
+ * Created on Dec 28, 2011, 9:30:11 PM
  */
 package modinstaller.gui;
 
@@ -14,10 +14,10 @@ package modinstaller.gui;
  *
  * @author kane
  */
-public class SettingsMenu extends javax.swing.JPanel {
+public class MenuHelp extends javax.swing.JPanel {
 
-    /** Creates new form SettingsMenu */
-    public SettingsMenu() {
+    /** Creates new form MenuHelp */
+    public MenuHelp() {
         initComponents();
     }
 

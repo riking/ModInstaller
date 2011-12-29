@@ -37,6 +37,7 @@ public class MenuMain extends javax.swing.JPanel {
         favButtonC = new javax.swing.JButton();
         favButtonD = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jarListPanel1 = new modinstaller.gui.JarListPanel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -46,27 +47,33 @@ public class MenuMain extends javax.swing.JPanel {
 
         favLabel.setText("Favorites");
 
-        favButtonA.setText("favButtonA");
+        favButtonA.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        favButtonA.setText("A");
         favButtonA.setPreferredSize(new java.awt.Dimension(70, 60));
 
-        favButtonB.setText("favButtonB");
+        favButtonB.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        favButtonB.setText("B");
         favButtonB.setPreferredSize(new java.awt.Dimension(70, 60));
 
-        favButtonC.setText("favButtonC");
+        favButtonC.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        favButtonC.setText("C");
         favButtonC.setPreferredSize(new java.awt.Dimension(70, 60));
 
-        favButtonD.setText("favButtonD");
+        favButtonD.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        favButtonD.setText("D");
         favButtonD.setPreferredSize(new java.awt.Dimension(70, 60));
 
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setViewportView(jarListPanel1);
 
         jButton5.setLabel("Settings");
 
         jButton6.setLabel("Edit");
 
-        jButton7.setText("Refresh");
+        jButton7.setText("Reload");
 
-        jButton8.setText("jButton8");
+        jButton8.setBackground(modinstaller.SettingsContainer.getColorUpToDate());
+        jButton8.setText("Help");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -115,14 +122,14 @@ public class MenuMain extends javax.swing.JPanel {
                     .addComponent(favButtonC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(favButtonD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
                     .addComponent(jButton6)
                     .addComponent(jButton7)
                     .addComponent(jButton8))
-                .addGap(201, 201, 201))
+                .addGap(100, 100, 100))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -137,5 +144,6 @@ public class MenuMain extends javax.swing.JPanel {
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private modinstaller.gui.JarListPanel jarListPanel1;
     // End of variables declaration//GEN-END:variables
 }

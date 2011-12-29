@@ -30,17 +30,50 @@ public class MainGuiContainer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        menuMain1 = new modinstaller.gui.MenuMain();
+        menuJarEdit1 = new modinstaller.gui.MenuJarEdit();
+        settingsMenu1 = new modinstaller.gui.MenuSettings();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTabbedPane1.addTab("tab1", menuMain1);
+
+        javax.swing.GroupLayout menuJarEdit1Layout = new javax.swing.GroupLayout(menuJarEdit1);
+        menuJarEdit1.setLayout(menuJarEdit1Layout);
+        menuJarEdit1Layout.setHorizontalGroup(
+            menuJarEdit1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 421, Short.MAX_VALUE)
+        );
+        menuJarEdit1Layout.setVerticalGroup(
+            menuJarEdit1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 494, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab2", menuJarEdit1);
+
+        javax.swing.GroupLayout settingsMenu1Layout = new javax.swing.GroupLayout(settingsMenu1);
+        settingsMenu1.setLayout(settingsMenu1Layout);
+        settingsMenu1Layout.setHorizontalGroup(
+            settingsMenu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 421, Short.MAX_VALUE)
+        );
+        settingsMenu1Layout.setVerticalGroup(
+            settingsMenu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 494, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab3", settingsMenu1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -82,5 +115,9 @@ public class MainGuiContainer extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private modinstaller.gui.MenuJarEdit menuJarEdit1;
+    private modinstaller.gui.MenuMain menuMain1;
+    private modinstaller.gui.MenuSettings settingsMenu1;
     // End of variables declaration//GEN-END:variables
 }
