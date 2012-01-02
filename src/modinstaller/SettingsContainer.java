@@ -19,21 +19,21 @@ public class SettingsContainer {
     static Color colorUpToDate;
     static Color colorMinorUpdate;
     static Color colorMajorUpdate;
+    static String favA;
+    static String favB;
+    static String favC;
+    static String favD;
     private static boolean init;
-    private SettingsContainer inst;
-    private File settingsFile;
-    private Properties props;
+    private static SettingsContainer inst;
+    private static File settingsFile;
+    private static Properties props;
 
     public SettingsContainer(File location) {
         settingsFile = location;
         props = new Properties();
     }
 
-    public static Color getColorUpToDate() {
-        return colorUpToDate;
-    }
-
-    public void init() {
+    public static void init() {
         try {
             props.load(new java.io.FileInputStream(settingsFile));
             String cTemp = props.getProperty("colorUpToDate", "147,196,125");
@@ -51,6 +51,10 @@ public class SettingsContainer {
             colorMajorUpdate = new Color(Integer.parseInt(cTemp2[0]),
                     Integer.parseInt(cTemp2[1]),
                     Integer.parseInt(cTemp2[2]));
+            favA = props.getProperty("favoriteModA",null);
+            favB = props.getProperty("favoriteModB",null);
+            favC = props.getProperty("favoriteModC",null);
+            favD = props.getProperty("favoriteModD",null);
         } catch (java.io.FileNotFoundException e) {
         } catch (IOException e) {
         }

@@ -32,6 +32,11 @@ public class ApplicationInit
                 
             }
         }
+        SettingsContainer.init();
+        if((launchmode & 0b0010) == 0)
+        {
+            PackageManager.init();
+        }
         
     }
     

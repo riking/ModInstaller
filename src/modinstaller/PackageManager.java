@@ -26,6 +26,10 @@ public class PackageManager {
     {
         return allMods.get(Mod.getIndexingName(name, ver));
     }
+    public static void init()
+    {
+        
+    }
     public static PackageManager getInstance()
     {
         return instance;
