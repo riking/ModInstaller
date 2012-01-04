@@ -51,15 +51,15 @@ public class MenuMain extends javax.swing.JPanel {
         favButtonA.setText("A");
         favButtonA.setPreferredSize(new java.awt.Dimension(70, 60));
 
-        favButtonB.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        favButtonB.setFont(new java.awt.Font("Ubuntu", 0, 24));
         favButtonB.setText("B");
         favButtonB.setPreferredSize(new java.awt.Dimension(70, 60));
 
-        favButtonC.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        favButtonC.setFont(new java.awt.Font("Ubuntu", 0, 24));
         favButtonC.setText("C");
         favButtonC.setPreferredSize(new java.awt.Dimension(70, 60));
 
-        favButtonD.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        favButtonD.setFont(new java.awt.Font("Ubuntu", 0, 24));
         favButtonD.setText("D");
         favButtonD.setPreferredSize(new java.awt.Dimension(70, 60));
 
@@ -68,11 +68,16 @@ public class MenuMain extends javax.swing.JPanel {
 
         jButton5.setLabel("Settings");
 
-        jButton6.setLabel("Edit");
+        jButton6.setText("Edit Mods");
 
-        jButton7.setText("Reload");
+        jButton7.setText("New Mod");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
-        jButton8.setBackground(modinstaller.SettingsContainer.getColorUpToDate());
+        jButton8.setBackground(new java.awt.Color(60, 163, 74));
         jButton8.setText("Help");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -100,12 +105,12 @@ public class MenuMain extends javax.swing.JPanel {
                         .addComponent(favButtonD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6)
-                        .addGap(18, 18, 18)
                         .addComponent(jButton7)
                         .addGap(18, 18, 18)
+                        .addComponent(jButton6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addComponent(jButton5)
+                        .addGap(26, 26, 26)
                         .addComponent(jButton8)))
                 .addContainerGap())
         );
@@ -125,13 +130,18 @@ public class MenuMain extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)
                     .addComponent(jButton7)
-                    .addComponent(jButton8))
+                    .addComponent(jButton8)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
                 .addGap(100, 100, 100))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton favButtonA;
     private javax.swing.JButton favButtonB;
