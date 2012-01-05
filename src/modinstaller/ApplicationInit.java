@@ -10,6 +10,12 @@ package modinstaller;
  */
 public class ApplicationInit
 {
+    public static JarCacheManager jarcache;
+    public static SettingsContainer settings;
+    public static PackageManager packages;
+    public static OSType OS;
+    public static String dirPath;
+    
     public static void main(String[] args)
     {
         int launchmode = 0b00000000;
@@ -23,24 +29,65 @@ public class ApplicationInit
         String s;
         if(args.length != 0)
         {
+            //do not make switch
             if(args[0].equals("launch"))
             {
                 launchmode |= 0b0011;
             }
-            else if(args[0].startsWith("URI"))
+            else if(args[0].equals("install"))
             {
-                
+                launchmode |= 0b0101;
             }
         }
-        SettingsContainer.init();
+        setOS();
+        dirPath = directory();
+        settings = new SettingsContainer(dirPath + "/options.properties");
+        settings.init();
         if((launchmode & 0b0010) == 0)
         {
             PackageManager.init();
         }
-        
+        jarcache = new JarCacheManager().init();
     }
-    
-    private static void initJarfiles()
+    public static void setOS()
     {
+        String osStr = System.getProperty("os.name").toLowerCase();
+        if(osStr.startsWith("win"))
+        {
+            if(osStr.equals("windows 7") || osStr.equals("windows 6.1"))
+                OS = OSType.WINDOWS_7;
+            else if(osStr.equals("windows xp"))
+                OS = OSType.WINDOWS_XP;
+            else
+                OS = OSType.WINDOWS;
+        }
+        else if(osStr.startsWith("mac"))
+            OS = OSType.MAC;
+        else if(osStr.contains("nix") || osStr.contains("nux"))
+            OS = OSType.LINUX;
+        else if(osStr.contains("solaris"))
+            OS = OSType.SOLARIS;
+    }
+            //note to self: to check archivers on linux, dpkg -s <package>
+            //package is openjdk-6-jdk(jar)
+            //also to install, gksudo.
+    public static String directory()
+    {
+        if(OS.isMac()){
+            System.out.println("Mac user!");
+            return System.getProperty("user.home")+"/Library/Application Support/modinstall";
+        }
+        else if(OS.isLinux()){
+            System.out.println("Linux/Unix/Solaris user!");
+            return System.getProperty("user.home")+"/.modinstall";
+        }
+        else if(OS.isWindows()){
+            System.out.println("Windows user!");
+            return System.getenv("APPDATA")+"/.modinstall";
+        }
+        else
+        {
+            throw new RuntimeException("Unknown OS!");
+        }
     }
 }

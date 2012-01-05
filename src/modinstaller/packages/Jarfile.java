@@ -33,7 +33,7 @@ public class Jarfile {
     {
         if(version.equals(PackageManager.currentVersion))
         {
-            return SettingsContainer.getColorUpToDate();
+            return SettingsContainer.colorUpToDate;
         }
         return new Color(255,255,255);
     }
