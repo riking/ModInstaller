@@ -22,12 +22,10 @@ public enum Version {
      Beta1_8(1),    Beta1_8_1(2),
      Beta1_9p1(1),  Beta1_9p2(1),  Beta1_9p3(1),  Beta1_9p4(1),  Beta1_9p5(1),  Beta1_9p6(2),
      Main1_0_0(1),  Main1_0_1(0);
-     public int outdatedFactor;
      // 0 = current
      // 1 = minor out-of-date
      // 2 = major out-of-date (sort of permissible)
      private Version(int i)
      {
-         outdatedFactor = i;
      }
 }
