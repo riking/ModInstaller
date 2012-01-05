@@ -20,6 +20,7 @@ public class Jarfile {
     public ArrayList<String> installed;
     public File jarlocation;
     private File settingsfile;
+    private Properties props = new Properties();
     
     public Jarfile(File settings)
     {
@@ -27,11 +28,11 @@ public class Jarfile {
     }
     public String niceVersion()
     {
-        return 
+        return version.dispName();
     }
     public Color getButtonColor()
     {
-        if(version.equals(PackageManager.currentVersion))
+        if(version.equals(Version.current))
         {
             return SettingsContainer.colorUpToDate;
         }
@@ -41,18 +42,21 @@ public class Jarfile {
     {
         try
         {
-            Properties configReader = new Properties();
-            configReader.load(new java.io.FileInputStream(settingsfile));
-            nick = configReader.getProperty("name");
-            version = Version.valueOf(configReader.getProperty("mcVersion"));
-            String installedmods = configReader.getProperty("installedMods");
+            props = new Properties();
+            props.load(new java.io.FileInputStream(settingsfile));
+            nick = props.getProperty("name");
+            version = new Version(props.getProperty("vWord"),props.getProperty("vMajor"),props.getProperty("vMinor"));
+            String installedmods = props.getProperty("installedMods");
             String[] temp = installedmods.split(",");
             installed.addAll(Arrays.asList(temp));
         }
         catch(java.io.IOException e)
         {
-            
         }
         return this;
+    }
+    public void save()
+    {
+        
     }
 }

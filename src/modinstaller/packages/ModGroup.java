@@ -11,7 +11,7 @@ import java.io.File;
  */
 public class ModGroup extends Mod
 {
-    public ModGroup(String s1, String s3)
+    public ModGroup(modinstaller.Version s1, String s3)
     {
         super(s1,s3);
     }
