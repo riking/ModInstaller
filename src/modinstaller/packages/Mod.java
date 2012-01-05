@@ -36,13 +36,6 @@ public class Mod
      * @param s1 Minecraft version.
      * @param s3 Internal, unique mod name.
      */
-    public Mod(String version, String id)
-    {
-        mcVersion = Version.valueOf(version);
-        name = id;
-        building = true;
-        dependencies = new ArrayList<>();
-    }
     public Mod(Version version, String id)
     {
         mcVersion = version;

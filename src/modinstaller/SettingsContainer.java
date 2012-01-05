@@ -26,7 +26,7 @@ public class SettingsContainer {
     private static Properties props;
 
     public SettingsContainer(String location) {
-        settingsFile = new File(location);
+        settingsFile = new File(ApplicationInit.dirPath +"/options.properties");
         props = new Properties();
     }
 

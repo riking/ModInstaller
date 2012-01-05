@@ -15,7 +15,6 @@ import java.util.LinkedList;
 public class PackageManager {
     private static HashMap<String,Mod> allMods;
     private static PackageManager instance;
-    public static Version currentVersion;
     /**
      * Gets a Mod class by name and version.
      * @param name Internal name

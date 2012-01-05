@@ -16,7 +16,7 @@ import java.awt.Color;
  */
 public class Jarfile {
     public String nick;
-    protected Version version;
+    public Version version;
     public ArrayList<String> installed;
     public File jarlocation;
     private File settingsfile;
@@ -27,7 +27,7 @@ public class Jarfile {
     }
     public String niceVersion()
     {
-        return "Minecraft" + version;
+        return 
     }
     public Color getButtonColor()
     {

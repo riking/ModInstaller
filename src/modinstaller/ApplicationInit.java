@@ -15,6 +15,7 @@ public class ApplicationInit
     public static PackageManager packages;
     public static OSType OS;
     public static String dirPath;
+    public static Version currentVersion;
     
     public static void main(String[] args)
     {
@@ -41,13 +42,14 @@ public class ApplicationInit
         }
         setOS();
         dirPath = directory();
-        settings = new SettingsContainer(dirPath + "/options.properties");
+        settings = new SettingsContainer();
         settings.init();
         if((launchmode & 0b0010) == 0)
         {
             PackageManager.init();
         }
-        jarcache = new JarCacheManager().init();
+        jarcache = new JarCacheManager();
+        jarcache.init();
     }
     public static void setOS()
     {
