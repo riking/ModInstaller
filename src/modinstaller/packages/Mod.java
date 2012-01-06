@@ -25,6 +25,7 @@ public class Mod
     public String forumURL;
     
     public String downloadURL;    
+    public DownloadType downloadType;
     public boolean hasResources;
             
     private ArrayList<String> categories;
