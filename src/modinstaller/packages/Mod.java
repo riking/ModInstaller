@@ -42,7 +42,7 @@ public class Mod
         mcVersion = version;
         name = id;
         building = true;
-        dependencies = new ArrayList<>();
+        dependencies = new ArrayList<Mod>();
     }
     public void complete()
             throws ModAlreadyDefinedException
@@ -100,6 +100,14 @@ public class Mod
     public String getJarfileName()
     {
         return mcVersion.name() +'-'+name+'-'+modVersion;
+    }
+    /**
+     * Used for download caches.
+     * @return 
+     */
+    public String getFileName()
+    {
+        return getJarfileName();
     }
     public java.net.URL getDownloadPath()
             throws java.net.MalformedURLException

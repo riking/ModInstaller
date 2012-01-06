@@ -19,7 +19,7 @@ public class ApplicationInit
     
     public static void main(String[] args)
     {
-        int launchmode = 0b00000000;
+        int launchmode = /*0b00000000*/0;
         /**
          * f & 0b00000001: No GUI
          * f & 0b00000010: Quick Launch
@@ -33,18 +33,18 @@ public class ApplicationInit
             //do not make switch
             if(args[0].equals("launch"))
             {
-                launchmode |= 0b0011;
+                launchmode |= /*0b0011*/3;
             }
             else if(args[0].equals("install"))
             {
-                launchmode |= 0b0101;
+                launchmode |= /*0b0101*/5;
             }
         }
         setOS();
         dirPath = directory();
         settings = new SettingsContainer();
         settings.init();
-        if((launchmode & 0b0010) == 0)
+        if((launchmode & /*0b0010*/2) == 0)
         {
             PackageManager.init();
         }
