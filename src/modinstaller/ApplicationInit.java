@@ -15,6 +15,7 @@ public class ApplicationInit
     public static PackageManager packages;
     public static OSType OS;
     public static String dirPath;
+    public static String mcPath;
     public static Version currentVersion;
     
     public static void main(String[] args)
@@ -41,7 +42,7 @@ public class ApplicationInit
             }
         }
         setOS();
-        dirPath = setPaths();
+        setPaths();
         settings = new SettingsContainer();
         settings.init();
         if((launchmode & /*0b0010*/2) == 0)
@@ -73,19 +74,22 @@ public class ApplicationInit
             //note to self: to check archivers on linux, dpkg -s <package>
             //package is openjdk-6-jdk(jar)
             //also to install, gksudo.
-    public static String setPaths()
+    public static void setPaths()
     {
         if(OS.isMac()){
             System.out.println("Mac user!");
-            return System.getProperty("user.home")+"/Library/Application Support/modinstall";
+            dirPath = System.getProperty("user.home")+"/Library/Application Support/modinstall";
+            mcPath = System.getProperty("user.home")+"/Library/Application Support/minecraft";
         }
         else if(OS.isLinux()){
             System.out.println("Linux/Unix/Solaris user!");
-            return System.getProperty("user.home")+"/.modinstall";
+            dirPath = System.getProperty("user.home")+"/.modinstall";
+            mcPath = System.getProperty("user.home")+"/.minecraft";
         }
         else if(OS.isWindows()){
             System.out.println("Windows user!");
-            return System.getenv("APPDATA")+"/.modinstall";
+            dirPath = System.getenv("APPDATA")+"/.modinstall";
+            mcPath = System.getenv("APPDATA")+"/.minecraft";
         }
         else
         {
