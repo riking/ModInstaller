@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.jar.JarInputStream;
@@ -117,17 +118,39 @@ public class InstallQueue {
                         if(current.downloadType == DownloadType.plainZip)
                         {
                             moveToStaging(tempDirFile);
-                            // Refresh it
+                            // Refresh the tempDirFile instance
                             tempDirFile = null;
                             tempDirFile = new File(tempDir);
                         }
                         else
                         {
+                            File[] farray = tempDirFile.listFiles();
+                            for(File f : farray)
+                            {
+                                if(f.isDirectory())
+                                {
+                                    if(f.getName().equals("bin") || f.getName().equals("minecraft"))
+                                    {
+                                        // these are class files (and other stuffs). move to staging.
+                                        moveToStaging(f);
+                                    }
+                                    else
+                                    {
+                                        // Move into .minecraft (e.g. config dirctory)
+                                        f.renameTo(new File(ApplicationInit.mcPath+'/'+f.getName()));
+                                    }
+                                }
+                                else
+                                {
+                                    // Move into .minecraft
+                                    f.renameTo(new File(ApplicationInit.mcPath+'/'+f.getName()));
+                                }
+                            }
+                            farray = null;
                             
                         }
                         break;
                     case plain7z:
-                        int placeholder = 1+1;
                         break;
                 }
             }
