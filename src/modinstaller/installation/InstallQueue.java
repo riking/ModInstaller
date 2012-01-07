@@ -68,13 +68,8 @@ public class InstallQueue {
         stageDirFile =new File(stageDir);
         tempDir = ApplicationInit.dirPath + "/temp/";
         tempDirFile = new File(tempDir);
-        try {
-            stageDirFile.mkdir(); tempDirFile.mkdir();
-        }
-        catch(IOException e)
-        {
-            throw new RuntimeException("Failed to make staging directory");
-        }
+        stageDirFile.mkdir();
+        tempDirFile.mkdir();
         while(!installList.isEmpty())
         {
             try
@@ -115,24 +110,24 @@ public class InstallQueue {
                             while ((len = zipIn.read(buf)) > 0) {
                                 fout.write(buf, 0, len);
                             }
+                            fout.close();
                             fCount++;
                         }
+                        if(fCount == 0) throw new RuntimeException("Possibly empty zip file");
                         if(current.downloadType == DownloadType.plainZip)
                         {
-                            File dir = tempDirFile;
-                            File[] fList = dir.listFiles();
-                            File tmp;
-                            for(File f : fList)
-                            {
-                                if((tmp = new File(stageDir + f.getName())).exists())
-                                {
-                                    tmp.delete();
-                                }
+                            moveToStaging(tempDirFile);
+                            // Refresh it
+                            tempDirFile = null;
+                            tempDirFile = new File(tempDir);
+                        }
+                        else
+                        {
                             
-                                dir.renameTo(stageDirFile);
                         }
                         break;
                     case plain7z:
+                        int placeholder = 1+1;
                         break;
                 }
             }
@@ -150,5 +145,24 @@ public class InstallQueue {
                 
             }
         }
+    }
+    private void moveToStaging(File dir)
+    {
+        File[] fList = dir.listFiles();
+        if(fList.length == 0) throw new RuntimeException("Empty directory!?");
+        File tmp;
+        for(File f : fList)
+        {
+            if((tmp = new File(stageDir + f.getName())).exists())
+            {
+                if(tmp.isDirectory())
+                {
+                    tmp.renameTo();
+                }
+                tmp.delete();
+            }
+        }
+        // Needs testing!
+        dir.renameTo(stageDirFile);
     }
 }
