@@ -41,7 +41,7 @@ public class ApplicationInit
             }
         }
         setOS();
-        dirPath = directory();
+        dirPath = setPaths();
         settings = new SettingsContainer();
         settings.init();
         if((launchmode & /*0b0010*/2) == 0)
@@ -73,7 +73,7 @@ public class ApplicationInit
             //note to self: to check archivers on linux, dpkg -s <package>
             //package is openjdk-6-jdk(jar)
             //also to install, gksudo.
-    public static String directory()
+    public static String setPaths()
     {
         if(OS.isMac()){
             System.out.println("Mac user!");
