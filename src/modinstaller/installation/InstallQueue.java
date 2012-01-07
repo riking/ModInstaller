@@ -148,7 +148,7 @@ public class InstallQueue {
     }
     private void moveToStaging(File dir)
     {
-        File[] fList = dir.listFiles();
+        /*File[] fList = dir.listFiles();
         if(fList.length == 0) throw new RuntimeException("Empty directory!?");
         File tmp;
         for(File f : fList)
@@ -161,7 +161,7 @@ public class InstallQueue {
                 }
                 tmp.delete();
             }
-        }
+        }*/
         // Needs testing!
         dir.renameTo(stageDirFile);
     }
